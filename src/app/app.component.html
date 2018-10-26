@@ -1,0 +1,46 @@
+<div class="container" (submit)="onSubmit()">
+  <form [formGroup]="userForm">
+    <div class="form-group">
+      <input type="text" class="form-control" [placeholder]="placeholders['username']" formControlName="username">
+      <div class="alert alert-danger" *ngIf="isControlValid('username')">
+        {{userForm.get('username').getError('usernameError')}}
+      </div>
+      <div class="alert alert-warning" *ngIf="userForm.get('username').dirty && userForm.get('username').pending">
+        Loading...
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [placeholder]="placeholders['age']" formControlName="age">
+      <div class="alert alert-danger" *ngIf="isControlValid('age')">
+        {{userForm.get('age').getError('ageError')}}
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [placeholder]="placeholders['birthday']" formControlName="birthday">
+      <div class="alert alert-danger" *ngIf="isControlValid('birthday')">
+        {{userForm.get('birthday').getError('birthdayError')}}
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [placeholder]="placeholders['dateOfLogin']" formControlName="dateOfLogin">
+      <div class="alert alert-danger" *ngIf="isControlValid('dateOfLogin')">
+        {{userForm.get('dateOfLogin').getError('dateOfLoginError')}}
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [placeholder]="placeholders['dateOfNotification']" formControlName="dateOfNotification">
+      <div class="alert alert-danger" *ngIf="isControlValid('dateOfNotification')">
+        {{userForm.get('dateOfNotification').getError('dateOfNotificationError')}}
+      </div>
+    </div>
+    <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary">Submit</button>
+  </form>
+  <div class="userInfo" *ngIf="submitFlag">
+    <div>Name: {{userForm.value.username}}</div>
+    <div>Age: {{userForm.value.age}}</div>
+    <div>Bithday: {{userForm.value.birthday}}</div>
+    <div>Date of login: {{userForm.value.dateOfLogin}}</div>
+    <div>Date of notification: {{userForm.value.dateOfNotification}}</div>
+  </div>
+</div>
+
